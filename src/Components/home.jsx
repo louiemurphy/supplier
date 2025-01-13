@@ -27,6 +27,7 @@ const Home = () => {
     try {
       const response = await fetch("http://193.203.162.228:5000/api/suppliers");
       const data = await response.json();
+      console.log("Fetched suppliers:", data); // Debugging
       setSuppliersData(data);
     } catch (error) {
       console.error("Error fetching suppliers:", error);
@@ -48,19 +49,21 @@ const Home = () => {
   
     const formData = new FormData(event.target);
     const newSupplier = {
-      email: formData.get("email"),
-      category: formData.get("category"),
-      classification: formData.get("classification"),
-      companyName: formData.get("companyName"),
-      address: formData.get("address"),
-      location: formData.get("location"),
-      account: formData.get("account"),
-      contactPerson: formData.get("contactPerson"),
-      contactNumber: formData.get("contactNumber"),
-      contactEmail: formData.get("contactEmail"),
-      website: formData.get("website") || "",
+      email: formData.get("email") || "N/A",
+      category: formData.get("category") || "N/A",
+      classification: formData.get("classification") || "N/A",
+      companyName: formData.get("companyName") || "N/A",
+      address: formData.get("address") || "N/A",
+      location: formData.get("location") || "N/A",
+      account: formData.get("account") || "N/A",
+      contactPerson: formData.get("contactPerson") || "N/A",
+      contactNumber: formData.get("contactNumber") || "N/A",
+      contactEmail: formData.get("contactEmail") || "N/A",
+      website: formData.get("website") || "N/A",
     };
-
+  
+    console.log("Form Data:", newSupplier); // Debugging
+  
     try {
       const response = await fetch("http://193.203.162.228:5000/api/suppliers", {
         method: "POST",
@@ -78,7 +81,7 @@ const Home = () => {
 
   const filteredData = suppliersData.filter((supplier) => {
     const matchesSearchTerm = Object.values(supplier).some((value) =>
-      value.toString().toLowerCase().includes(searchTerm.toLowerCase())
+      value?.toString().toLowerCase().includes(searchTerm.toLowerCase())
     );
 
     return (
@@ -329,42 +332,50 @@ const Home = () => {
               </thead>
               <tbody>
                 {displayedData.map((supplier, index) => {
-  const formattedTimestamp = new Date(supplier.timestamp).toLocaleString("en-US", {
-    timeZone: "Asia/Manila",
-    year: 'numeric',
-    month: '2-digit',
-    day: '2-digit',
-    hour: '2-digit',
-    minute: '2-digit',
-    second: '2-digit',
-    hour12: true
-  });
-  return (
-    <tr key={index}>
-      <td>{formattedTimestamp}</td>
-                      <td>{supplier.email}</td>
-                      <td>{supplier.category}</td>
+                  // Handle invalid or missing timestamp
+                  const formattedTimestamp = supplier.timestamp
+                    ? new Date(supplier.timestamp).toLocaleString("en-US", {
+                        timeZone: "Asia/Manila",
+                        year: 'numeric',
+                        month: '2-digit',
+                        day: '2-digit',
+                        hour: '2-digit',
+                        minute: '2-digit',
+                        second: '2-digit',
+                        hour12: true
+                      })
+                    : "N/A"; // Fallback for invalid or missing timestamp
+
+                  return (
+                    <tr key={index}>
+                      <td>{formattedTimestamp}</td>
+                      <td>{supplier.email || "N/A"}</td>
+                      <td>{supplier.category || "N/A"}</td>
                       <td>
-                        <span className={`${supplier.classification.toLowerCase()}-text`}>
-                          {supplier.classification}
+                        <span className={`${supplier.classification?.toLowerCase()}-text`}>
+                          {supplier.classification || "N/A"}
                         </span>
                       </td>
-                      <td>{supplier.companyName}</td>
-                      <td>{supplier.address}</td>
-                      <td>{supplier.location}</td>
-                      <td>{supplier.account}</td>
-                      <td>{supplier.contactPerson}</td>
-                      <td>{supplier.contactNumber}</td>
-                      <td>{supplier.contactEmail}</td>
+                      <td>{supplier.companyName || "N/A"}</td>
+                      <td>{supplier.address || "N/A"}</td>
+                      <td>{supplier.location || "N/A"}</td>
+                      <td>{supplier.account || "N/A"}</td>
+                      <td>{supplier.contactPerson || "N/A"}</td>
+                      <td>{supplier.contactNumber || "N/A"}</td>
+                      <td>{supplier.contactEmail || "N/A"}</td>
                       <td>
-                        <a
-                          href={supplier.website}
-                          target="_blank"
-                          rel="noopener noreferrer"
-                          className="website-link"
-                        >
-                          Visit Site
-                        </a>
+                        {supplier.website ? (
+                          <a
+                            href={supplier.website}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="website-link"
+                          >
+                            Visit Site
+                          </a>
+                        ) : (
+                          "N/A"
+                        )}
                       </td>
                     </tr>
                   );
@@ -399,11 +410,11 @@ const Home = () => {
                     <div className="form-grid">
                       <div className="form-group">
                         <label>Email:</label>
-                        <input type="email" name="email"  className="form-input" />
+                        <input type="email" name="email" className="form-input" />
                       </div>
                       <div className="form-group">
                         <label>Classification:</label>
-                        <select name="classification"  className="form-input">
+                        <select name="classification" className="form-input">
                           <option value="">Select Classification</option>
                           <option value="Import">Import</option>
                           <option value="Local">Local</option>
@@ -411,7 +422,7 @@ const Home = () => {
                       </div>
                       <div className="form-group">
                         <label>Category:</label>
-                        <select name="category"  className="form-input">
+                        <select name="category" className="form-input">
                           {categories.map((category, index) => (
                             <option key={index} value={category}>
                               {category}
@@ -421,15 +432,15 @@ const Home = () => {
                       </div>
                       <div className="form-group">
                         <label>Name of the Company:</label>
-                        <input type="text" name="companyName"  className="form-input" />
+                        <input type="text" name="companyName" className="form-input" />
                       </div>
                       <div className="form-group">
                         <label>Address:</label>
-                        <textarea name="address"  className="form-input"></textarea>
+                        <textarea name="address" className="form-input"></textarea>
                       </div>
                       <div className="form-group">
                         <label>Location:</label>
-                        <select name="location"  className="form-input">
+                        <select name="location" className="form-input">
                           <option value="">Select Location</option>
                           <option value="Luzon">Luzon</option>
                           <option value="Visayas">Visayas</option>
@@ -444,7 +455,7 @@ const Home = () => {
                       </div>
                       <div className="form-group">
                         <label>Account:</label>
-                        <select name="account"  className="form-input">
+                        <select name="account" className="form-input">
                           <option value="">Select Account</option>
                           <option value="Wechat">Wechat</option>
                           <option value="Whatsapp">Whatsapp</option>
@@ -457,15 +468,15 @@ const Home = () => {
                       </div>
                       <div className="form-group">
                         <label>Contact Person:</label>
-                        <input type="text" name="contactPerson"  className="form-input" />
+                        <input type="text" name="contactPerson" className="form-input" />
                       </div>
                       <div className="form-group">
                         <label>Contact Number:</label>
-                        <input type="text" name="contactNumber"  className="form-input" />
+                        <input type="text" name="contactNumber" className="form-input" />
                       </div>
                       <div className="form-group">
                         <label>Contact Email:</label>
-                        <input type="email" name="contactEmail"  className="form-input" />
+                        <input type="email" name="contactEmail" className="form-input" />
                       </div>
                       <div className="form-group">
                         <label>Website:</label>
