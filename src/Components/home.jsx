@@ -63,7 +63,7 @@ const Home = () => {
     };
   
     try {
-      const response = await fetch("http://localhost:5000/api/suppliers", {
+      const response = await fetch("http://193.203.162.228:5000/api/suppliers", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(newSupplier),
