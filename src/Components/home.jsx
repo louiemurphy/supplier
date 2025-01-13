@@ -45,49 +45,50 @@ const Home = () => {
 
   const handleFormSubmit = async (event) => {
     event.preventDefault();
-
+    
     const formData = new FormData(event.target);
     const newSupplier = {
       timestamp: moment().tz("Asia/Manila").format("MM/DD/YYYY, h:mm:ss A"), // Set timestamp to Philippine Time
-      email: formData.get("email"),
-      category: formData.get("category"),
-      classification: formData.get("classification"),
-      companyName: formData.get("companyName"),
-      address: formData.get("address"),
-      location: formData.get("location"),
-      account: formData.get("account"),
-      contactPerson: formData.get("contactPerson"),
-      contactNumber: formData.get("contactNumber"),
-      contactEmail: formData.get("contactEmail"),
+      email: formData.get("email") || "", // Default to an empty string if not provided
+      category: formData.get("category") || "",
+      classification: formData.get("classification") || "",
+      companyName: formData.get("companyName") || "",
+      address: formData.get("address") || "",
+      location: formData.get("location") || "",
+      account: formData.get("account") || "",
+      contactPerson: formData.get("contactPerson") || "",
+      contactNumber: formData.get("contactNumber") || "",
+      contactEmail: formData.get("contactEmail") || "",
       website: formData.get("website") || "",
     };
-
+  
     try {
-      // Send new supplier data to the backend
-      const response = await fetch("http://193.203.162.228:5000/api/suppliers", {
+      const response = await fetch("http://localhost:5000/api/suppliers", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(newSupplier),
       });
       const data = await response.json();
-      setSuppliersData([data, ...suppliersData]); // Update the state with the new supplier
+      // Add new supplier to the top
+      setSuppliersData([data, ...suppliersData]);
       setIsFormVisible(false);
       event.target.reset();
     } catch (error) {
       console.error("Error adding supplier:", error);
     }
   };
+  
+  
 
   const filteredData = suppliersData.filter((supplier) => {
-    const matchesSearchTerm = Object.values(supplier).some((value) =>
-      value.toString().toLowerCase().includes(searchTerm.toLowerCase())
+    const matchesSearchTerm = Object.values(supplier).some(
+      (value) => value && value.toString().toLowerCase().includes(searchTerm.toLowerCase())
     );
-
+  
     return (
       matchesSearchTerm &&
       (filters.product === "All Productions" || supplier.category === filters.product) &&
-      (filters.classification === "All classifications" ||
-        supplier.classification === filters.classification) &&
+      (filters.classification === "All classifications" || supplier.classification === filters.classification) &&
       (filters.location === "All Locations" || supplier.location === filters.location)
     );
   });
@@ -323,39 +324,41 @@ const Home = () => {
                 </tr>
               </thead>
               <tbody>
-                {displayedData.map((supplier, index) => {
-                  const formattedTimestamp = moment(supplier.timestamp).tz("Asia/Manila").format("MM/DD/YYYY, h:mm:ss A");
-                  return (
-                    <tr key={index}>
-                      <td>{formattedTimestamp}</td>
-                      <td>{supplier.email}</td>
-                      <td>{supplier.category}</td>
-                      <td>
-                        <span className={`${supplier.classification.toLowerCase()}-text`}>
-                          {supplier.classification}
-                        </span>
-                      </td>
-                      <td>{supplier.companyName}</td>
-                      <td>{supplier.address}</td>
-                      <td>{supplier.location}</td>
-                      <td>{supplier.account}</td>
-                      <td>{supplier.contactPerson}</td>
-                      <td>{supplier.contactNumber}</td>
-                      <td>{supplier.contactEmail}</td>
-                      <td>
-                        <a
-                          href={supplier.website}
-                          target="_blank"
-                          rel="noopener noreferrer"
-                          className="website-link"
-                        >
-                          Visit Site
-                        </a>
-                      </td>
-                    </tr>
-                  );
-                })}
-              </tbody>
+  {displayedData.map((supplier, index) => {
+    const formattedTimestamp = moment(supplier.timestamp).tz("Asia/Manila").format("MM/DD/YYYY, h:mm:ss A");
+    return (
+      <tr key={index}>
+        <td>{formattedTimestamp || "N/A"}</td>
+        <td>{supplier.email || "N/A"}</td>
+        <td>{supplier.category || "N/A"}</td>
+        <td>
+          <span className={`${supplier.classification?.toLowerCase() || ""}-text`}>
+            {supplier.classification || "N/A"}
+          </span>
+        </td>
+        <td>{supplier.companyName || "N/A"}</td>
+        <td>{supplier.address || "N/A"}</td>
+        <td>{supplier.location || "N/A"}</td>
+        <td>{supplier.account || "N/A"}</td>
+        <td>{supplier.contactPerson || "N/A"}</td>
+        <td>{supplier.contactNumber || "N/A"}</td>
+        <td>{supplier.contactEmail || "N/A"}</td>
+        <td>
+          <a
+            href={supplier.website || "#"}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="website-link"
+          >
+            {supplier.website ? "Visit Site" : "N/A"}
+          </a>
+        </td>
+      </tr>
+    );
+  })}
+</tbody>
+
+
             </table>
 
             {/* Records Display */}
@@ -385,11 +388,11 @@ const Home = () => {
                     <div className="form-grid">
                       <div className="form-group">
                         <label>Email:</label>
-                        <input type="email" name="email" required className="form-input" />
+                        <input type="email" name="email" className="form-input" />
                       </div>
                       <div className="form-group">
                         <label>Classification:</label>
-                        <select name="classification" required className="form-input">
+                        <select name="classification"  className="form-input">
                           <option value="">Select Classification</option>
                           <option value="Import">Import</option>
                           <option value="Local">Local</option>
@@ -397,7 +400,7 @@ const Home = () => {
                       </div>
                       <div className="form-group">
                         <label>Category:</label>
-                        <select name="category" required className="form-input">
+                        <select name="category"  className="form-input">
                           {categories.map((category, index) => (
                             <option key={index} value={category}>
                               {category}
@@ -407,15 +410,15 @@ const Home = () => {
                       </div>
                       <div className="form-group">
                         <label>Name of the Company:</label>
-                        <input type="text" name="companyName" required className="form-input" />
+                        <input type="text" name="companyName"  className="form-input" />
                       </div>
                       <div className="form-group">
                         <label>Address:</label>
-                        <textarea name="address" required className="form-input"></textarea>
+                        <textarea name="address"  className="form-input"></textarea>
                       </div>
                       <div className="form-group">
                         <label>Location:</label>
-                        <select name="location" required className="form-input">
+                        <select name="location"  className="form-input">
                           <option value="">Select Location</option>
                           <option value="Luzon">Luzon</option>
                           <option value="Visayas">Visayas</option>
@@ -430,7 +433,7 @@ const Home = () => {
                       </div>
                       <div className="form-group">
                         <label>Account:</label>
-                        <select name="account" required className="form-input">
+                        <select name="account"  className="form-input">
                           <option value="">Select Account</option>
                           <option value="Wechat">Wechat</option>
                           <option value="Whatsapp">Whatsapp</option>
@@ -443,15 +446,15 @@ const Home = () => {
                       </div>
                       <div className="form-group">
                         <label>Contact Person:</label>
-                        <input type="text" name="contactPerson" required className="form-input" />
+                        <input type="text" name="contactPerson"  className="form-input" />
                       </div>
                       <div className="form-group">
                         <label>Contact Number:</label>
-                        <input type="text" name="contactNumber" required className="form-input" />
+                        <input type="text" name="contactNumber"  className="form-input" />
                       </div>
                       <div className="form-group">
                         <label>Contact Email:</label>
-                        <input type="email" name="contactEmail" required className="form-input" />
+                        <input type="email" name="contactEmail"  className="form-input" />
                       </div>
                       <div className="form-group">
                         <label>Website:</label>
