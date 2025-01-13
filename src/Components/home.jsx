@@ -168,7 +168,13 @@ const Home = () => {
     "Floating Solar",
     "Hydroponics",
     "Electric Vehicle",
-    "Electrical Equipments"
+    "Electrical Equipments",
+    "Computer Peripherals and Equipments",
+    "Fire Detection and Alarm System",
+    "CCTV Equipments",
+    "Audio Visual Solutions",
+    "Biometric and Door Access Solutions",
+    "Security and Technology Solutions Inc."
   ];
 
   const classifications = [
