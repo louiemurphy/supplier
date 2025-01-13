@@ -168,6 +168,7 @@ const Home = () => {
     "Floating Solar",
     "Hydroponics",
     "Electric Vehicle",
+    "Electrical Equipements"
   ];
 
   const classifications = [
