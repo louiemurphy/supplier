@@ -177,7 +177,9 @@ const Home = () => {
     "CCTV Equipments",
     "Audio Visual Solutions",
     "Biometric and Door Access Solutions",
-    "Security and Technology Solutions Inc."
+    "Security and Technology Solutions Inc.",
+    "Networking Devices",
+    "IoT products"
   ];
 
   const classifications = [
