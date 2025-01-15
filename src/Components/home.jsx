@@ -48,6 +48,13 @@ const Home = () => {
     event.preventDefault();
   
     const formData = new FormData(event.target);
+    let website = formData.get("website") || "N/A";
+  
+    // Prepend 'https://' if the website URL doesn't start with 'http://' or 'https://'
+    if (website !== "N/A" && !website.startsWith("http://") && !website.startsWith("https://")) {
+      website = `https://${website}`;
+    }
+  
     const newSupplier = {
       email: formData.get("email") || "N/A",
       category: formData.get("category") || "N/A",
@@ -59,7 +66,7 @@ const Home = () => {
       contactPerson: formData.get("contactPerson") || "N/A",
       contactNumber: formData.get("contactNumber") || "N/A",
       contactEmail: formData.get("contactEmail") || "N/A",
-      website: formData.get("website") || "N/A",
+      website: website, // Use the modified website URL
     };
   
     console.log("Form Data:", newSupplier); // Debugging
@@ -312,6 +319,7 @@ const Home = () => {
             <option value={10}>Show 10</option>
             <option value={20}>Show 20</option>
             <option value={50}>Show 50</option>
+            <option value={50}>Show 100</option>
           </select>
 
           <div className="table-container">
@@ -482,7 +490,7 @@ const Home = () => {
                       </div>
                       <div className="form-group">
                         <label>Website:</label>
-                        <input type="url" name="website" className="form-input" />
+                        <input name="website" className="form-input" />
                       </div>
                     </div>
                   </div>
