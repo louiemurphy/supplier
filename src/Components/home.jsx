@@ -188,7 +188,8 @@ const Home = () => {
     "Networking Devices",
     "IoT products",
     "Multimeter",
-    "Power tools"
+    "Power tools",
+    "Energy Storage System"
   ];
 
   const classifications = [
