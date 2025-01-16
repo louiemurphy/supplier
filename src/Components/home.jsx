@@ -186,7 +186,9 @@ const Home = () => {
     "Biometric and Door Access Solutions",
     "Security and Technology Solutions Inc.",
     "Networking Devices",
-    "IoT products"
+    "IoT products",
+    "Multimeter",
+    "Power tools"
   ];
 
   const classifications = [
