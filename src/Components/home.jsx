@@ -189,7 +189,11 @@ const Home = () => {
     "IoT products",
     "Multimeter",
     "Power tools",
-    "Energy Storage System"
+    "Energy Storage System",
+    "Power stations",
+    "Generator Sets",
+    "Lithium Ion Battery",
+    "Furnitures"
   ];
 
   const classifications = [
