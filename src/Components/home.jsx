@@ -196,7 +196,8 @@ const Home = () => {
     "Furnitures and household equipments",
     "Solar Street Lights",
     "Solar Powered Equipments",
-    "EV charger"
+    "EV charger",
+    "ForkLift"
   ];
 
   const classifications = [
