@@ -193,7 +193,11 @@ const Home = () => {
     "Power stations",
     "Generator Sets",
     "Lithium Ion Battery",
-    "Furnitures"
+    "Furnitures",
+    "Solar Street Lights",
+    "Solar Powered",
+    "Solar Powered Equipments",
+    "EV charger"
   ];
 
   const classifications = [
