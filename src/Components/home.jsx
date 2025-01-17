@@ -193,9 +193,8 @@ const Home = () => {
     "Power stations",
     "Generator Sets",
     "Lithium Ion Battery",
-    "Furnitures",
+    "Furnitures and household equipments",
     "Solar Street Lights",
-    "Solar Powered",
     "Solar Powered Equipments",
     "EV charger"
   ];
@@ -331,6 +330,7 @@ const Home = () => {
             <option value={20}>Show 20</option>
             <option value={50}>Show 50</option>
             <option value={100}>Show 100</option>
+            <option value={1000}>Show 1000</option>
           </select>
 
           <div className="table-container">
