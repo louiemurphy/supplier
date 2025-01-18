@@ -214,16 +214,18 @@ const Home = () => {
   ];
   const locations = [
     "All Locations",
-    "Luzon",
-    "Visayas",
-    "Mindanao",
-    "China",
-    "Taiwan",
-    "India",
-    "U.S",
-    "Hongkong",
-    "South Korea",
-    ...new Set(suppliersData.map((s) => s.location)),
+    ...new Set([
+      "Luzon",
+      "Visayas",
+      "Mindanao",
+      "China",
+      "Taiwan",
+      "India",
+      "U.S",
+      "Hongkong",
+      "South Korea",
+      ...suppliersData.map((s) => s.location),
+    ]),
   ];
 
   return (
