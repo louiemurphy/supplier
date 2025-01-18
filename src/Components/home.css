@@ -580,3 +580,42 @@
     }
 }
 
+.pagination-controls {
+    display: flex;
+    align-items: center;
+    gap: 10px; /* Space between "Show X" dropdown and pagination buttons */
+    
+  }
+  
+  .pagination-buttons {
+    display: flex;
+    align-items: center;
+    gap: 10px; /* Space between buttons and text */
+    margin-left: 1250px;
+  }
+  
+  .pagination-buttons button {
+    background: #007bff;
+    color: white;
+    border: none;
+    padding: 5px 10px;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+  
+  .pagination-buttons button:disabled {
+    background: #cccccc;
+    cursor: not-allowed;
+  }
+  
+  .pagination-buttons span {
+    font-size: 14px;
+    color: #333;
+  }
+  
+  .filter-select2 {
+    padding: 10px 10px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+    font-size: 14px;
+  }
