@@ -206,6 +206,7 @@ const Home = () => {
     "Solar Powered Equipments",
     "EV charger",
     "ForkLift",
+    "Septic Tank"
   ];
 
   const classifications = [
