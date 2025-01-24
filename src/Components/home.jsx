@@ -207,6 +207,17 @@ const Home = () => {
     "EV charger",
     "ForkLift",
     "Septic Tank"
+    "Wheel Chair", 
+    "Vien Finder",
+    "Parma Ref",
+    "Ice Machine",
+    "PreCast Concrete Wall",
+    "Machine",
+    "Knapsack",
+    "Agricultural Products",
+    "Mosquito Catcher" ,
+    "Drone",
+    "Feather Flucker"
   ];
 
   const classifications = [
