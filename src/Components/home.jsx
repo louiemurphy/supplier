@@ -227,7 +227,7 @@ const Home = () => {
     "Cyclone Wire",
     "Ice cube Maker",
     "Eltric Muffle Furnance",
-    "Aircon"
+    "Aircon",
     "Garden GlOVES",
     "Chainsaw",
     "Cutter"
