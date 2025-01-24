@@ -217,7 +217,20 @@ const Home = () => {
     "Agricultural Products",
     "Mosquito Catcher" ,
     "Drone",
-    "Feather Flucker"
+    "Feather Flucker",
+    "Actuator Valve",
+    "Illuminated Dog Vest",
+    "HDPE Geocell",
+    "Arrester",
+    "HDMI Matrix",
+    "Elevator",
+    "Cyclone Wire",
+    "Ice cube Maker",
+    "Eltric Muffle Furnance",
+    "Aircon"
+    "Garden GlOVES",
+    "Chainsaw",
+    "Cutter"
   ];
 
   const classifications = [
