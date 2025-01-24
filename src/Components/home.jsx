@@ -206,7 +206,7 @@ const Home = () => {
     "Solar Powered Equipments",
     "EV charger",
     "ForkLift",
-    "Septic Tank"
+    "Septic Tank",
     "Wheel Chair", 
     "Vien Finder",
     "Parma Ref",
