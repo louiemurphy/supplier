@@ -280,7 +280,8 @@ const Home = () => {
     "Horn Speaker",
     "Water treatment machine",
     "Solar Gate Barrier",
-    "Ground Rod Driving Machine"
+    "Ground Rod Driving Machine",
+    "Tote Bag"
   ];
 
   const classifications = [
