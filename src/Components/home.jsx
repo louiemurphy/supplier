@@ -278,7 +278,9 @@ const Home = () => {
     "Phase Converter",
     "Glow in the Dark Road Marking",
     "Horn Speaker",
-    "Water treatment machine"
+    "Water treatment machine",
+    "Solar Gate Barrier",
+    "Ground Rod Driving Machine"
   ];
 
   const classifications = [
