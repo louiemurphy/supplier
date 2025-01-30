@@ -255,8 +255,10 @@ const Home = () => {
     "Led Screen TV",
     "Hydro",
     "Laser Engraving Machine",
-
-    "Charge Controller"
+    "Charge Controller",
+    "Bicycle",
+    "Motorcycle",
+    "Car"
   ];
 
   const classifications = [
