@@ -258,7 +258,27 @@ const Home = () => {
     "Charge Controller",
     "Bicycle",
     "Motorcycle",
-    "Car"
+    "Car",
+    "Prefrabricated House",
+    "Fuel Dispenser",
+    "UPS",
+    "Real-Time Kinematic",
+    "Electric-Diesel Fire Pump",
+    "Solar Radar Speed Limit",
+    "Electric Motor Engine",
+    "Visibility Rubber Speed Bump",
+    "AC Powered Mast Light",
+    "Film Smart Glass",
+    "Solar Insect Trap",
+    "Solar Thin Film",
+    "GI Tubing",
+    "Solar Roof Tile",
+    "Wind Turbine",
+    "Book Binding Machine",
+    "Phase Converter",
+    "Glow in the Dark Road Marking",
+    "Horn Speaker",
+    "Water treatment machine"
   ];
 
   const classifications = [
