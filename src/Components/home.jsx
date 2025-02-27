@@ -27,7 +27,7 @@ const Home = () => {
 
   const fetchSuppliers = async () => {
     try {
-      const response = await fetch("http://193.203.162.228:5000/api/suppliers");
+      const response = await fetch("https://back-650z.onrender.com/api/suppliers");
       const data = await response.json();
       setSuppliersData(data);
     } catch (error) {
@@ -68,7 +68,7 @@ const Home = () => {
     };
 
     try {
-      const response = await fetch("http://193.203.162.228:5000/api/suppliers", {
+      const response = await fetch("https://back-650z.onrender.com/api/suppliers", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(newSupplier),
